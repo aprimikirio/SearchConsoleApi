@@ -57,11 +57,11 @@ namespace SearchConsole.Core
             }
         }
 
-        private ClientIdJson Json;
+        private ClientJson Json;
 
         public SearchConsole(string clientId, string clientSecret, string userName, string dataStoreName, string appName, string siteUrl)
         {
-            Json = new ClientIdJson(clientId, clientSecret);
+            Json = new ClientJson(clientId, clientSecret);
             UserName = userName;
             DataStoreName = dataStoreName;
             AppName = appName;
@@ -72,7 +72,7 @@ namespace SearchConsole.Core
 
         public SearchConsole(string jsonPath, string userName, string dataStoreName, string appName, string siteUrl)
         {
-            Json = new ClientIdJson(jsonPath);
+            Json = new ClientJson(jsonPath);
             UserName = userName;
             DataStoreName = dataStoreName;
             AppName = appName;
