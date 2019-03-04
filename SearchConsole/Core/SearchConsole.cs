@@ -98,62 +98,62 @@ namespace SearchConsole.Core
             });
         }
 
-        public List<QuerryResponce> RequestForSPC(string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
+        public List<QuerryResponce> RequestForSPC(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);
-            return RequestForSPC(QueryDate, country, rowStart, rowLimit);
+            return RequestForSPC(QueryDate, rowStart, rowLimit, country);
         }
 
-        public List<QuerryResponce> RequestForSPC(DateTime date, string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
+        public List<QuerryResponce> RequestForSPC(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
-            return RequestFor(new List<string>() { "query", "page", "country", "device" }, date, country, rowStart, rowLimit);
+            return RequestFor(new List<string>() { "query", "page", "country", "device" }, date, rowStart, rowLimit, country);
         }
 
-        public List<QuerryResponce> RequestForSearchs(string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
-        {
-            QueryDate = DateTime.Now.AddDays(DaysDelay);
-            return RequestForSearchs(QueryDate, country, rowStart, rowLimit);
-        }
-
-        public List<QuerryResponce> RequestForSearchs(DateTime date, string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
-        {
-            return RequestFor(new List<string>() { "query" }, date, country, rowStart, rowLimit);
-        }
-
-        public List<QuerryResponce> RequestForPages(string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
+        public List<QuerryResponce> RequestForSearchs(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);
-            return RequestForPages(QueryDate, country, rowStart, rowLimit);
+            return RequestForSearchs(QueryDate, rowStart, rowLimit, country);
         }
 
-        public List<QuerryResponce> RequestForPages(DateTime date, string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
+        public List<QuerryResponce> RequestForSearchs(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
-            return RequestFor(new List<string>() { "page" }, date, country, rowStart, rowLimit);
+            return RequestFor(new List<string>() { "query" }, date, rowStart, rowLimit, country);
         }
 
-        public List<QuerryResponce> RequestForСountries(string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
-        {
-            QueryDate = DateTime.Now.AddDays(DaysDelay);
-            return RequestForСountries(QueryDate, country, rowStart, rowLimit);
-        }
-
-        public List<QuerryResponce> RequestForСountries(DateTime date, string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
-        {
-            return RequestFor(new List<string>() { "country" }, date, country, rowStart, rowLimit);
-        }
-
-        public List<QuerryResponce> RequestForDevices(string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
+        public List<QuerryResponce> RequestForPages(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);
-            return RequestForDevices(QueryDate, country, rowStart, rowLimit);
+            return RequestForPages(QueryDate, rowStart, rowLimit, country);
         }
 
-        public List<QuerryResponce> RequestForDevices(DateTime date, string country = null, int rowStart = 0, int rowLimit = RowLimitConst)
+        public List<QuerryResponce> RequestForPages(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
-            return RequestFor(new List<string>() { "device" }, date, country, rowStart, rowLimit);
+            return RequestFor(new List<string>() { "page" }, date, rowStart, rowLimit, country);
         }
 
-        private List<QuerryResponce> RequestFor(List<string> dimensions, DateTime date, string country, int rowStart, int rowLimit = RowLimitConst)
+        public List<QuerryResponce> RequestForСountries(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
+        {
+            QueryDate = DateTime.Now.AddDays(DaysDelay);
+            return RequestForСountries(QueryDate, rowStart, rowLimit, country);
+        }
+
+        public List<QuerryResponce> RequestForСountries(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
+        {
+            return RequestFor(new List<string>() { "country" }, date, rowStart, rowLimit, country);
+        }
+
+        public List<QuerryResponce> RequestForDevices(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
+        {
+            QueryDate = DateTime.Now.AddDays(DaysDelay);
+            return RequestForDevices(QueryDate, rowStart, rowLimit, country);
+        }
+
+        public List<QuerryResponce> RequestForDevices(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
+        {
+            return RequestFor(new List<string>() { "device" }, date, rowStart, rowLimit, country);
+        }
+
+        private List<QuerryResponce> RequestFor(List<string> dimensions, DateTime date, int rowStart, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = date;
             QueryRowLimit = rowLimit;
@@ -185,7 +185,7 @@ namespace SearchConsole.Core
                     StartDate = queryDate,
                     EndDate = queryDate,
                     RowLimit = queryRowLimit,
-                    Dimensions = dimensions //"page" "query" "country" "device" "date"
+                    Dimensions = dimensions
                 };
 
             SearchAnalyticsQueryResponse myQueryResponse = new SearchAnalyticsQueryResponse();

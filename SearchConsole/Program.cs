@@ -18,7 +18,7 @@ namespace SearchConsole
 
                 List<QuerryResponce> results = new List<QuerryResponce>();
 
-                results = s.RequestForSPC(new DateTime(1997, 3, 24), null);
+                results = s.RequestForSPC(new DateTime(1997, 3, 24));
 
             foreach (QuerryResponce result in results)
             {
