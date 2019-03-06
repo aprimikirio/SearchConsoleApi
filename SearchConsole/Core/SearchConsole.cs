@@ -59,6 +59,15 @@ namespace SearchConsole.Core
 
         private ClientJson Json;
 
+        /// <summary>
+        /// Creates a new SearchConsole
+        /// </summary>
+        /// <param name="clientId">Client Id. Get from https://console.developers.google.com/apis/credentials </param>  
+        /// <param name="clientSecret">Client Secret. Get from https://console.developers.google.com/apis/credentials </param>  
+        /// <param name="userName">User name for credential</param>
+        /// <param name="dataStoreName">Name for credential`s File Data Store</param>  
+        /// <param name="appName">Name for WebmastersService`s File Data Store</param>  
+        /// <param name="siteUrl">URL to the site to be explored</param>  
         public SearchConsole(string clientId, string clientSecret, string userName, string dataStoreName, string appName, string siteUrl)
         {
             Json = new ClientJson(clientId, clientSecret);
@@ -70,6 +79,14 @@ namespace SearchConsole.Core
             InitGoogleServices().Wait();
         }
 
+        /// <summary>
+        /// Creates a new SearchConsole
+        /// </summary>
+        /// <param name="jsonPath">Path to client_id.json file. Get from https://console.developers.google.com/apis/credentials </param>  
+        /// <param name="userName">User name for credential</param>
+        /// <param name="dataStoreName">Name for credential`s File Data Store</param>  
+        /// <param name="appName">Name for WebmastersService`s File Data Store</param>  
+        /// <param name="siteUrl">URL to the site to be explored</param>  
         public SearchConsole(string jsonPath, string userName, string dataStoreName, string appName, string siteUrl)
         {
             Json = new ClientJson(jsonPath);
@@ -97,6 +114,7 @@ namespace SearchConsole.Core
                 ApplicationName = AppName
             });
         }
+
 
         public List<QuerryResponce> RequestForSPC(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
