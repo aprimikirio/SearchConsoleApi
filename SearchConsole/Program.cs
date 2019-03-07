@@ -8,7 +8,6 @@ namespace SearchConsole
     {
         static void Main(string[] args)
         {
-            //https://console.developers.google.com/apis/credentials
             SearchConsole.Core.SearchConsole s = new SearchConsole.Core.SearchConsole(
                 @"D:\client_id.json",
                 "aprimikirio",
