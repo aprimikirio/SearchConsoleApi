@@ -62,7 +62,7 @@ namespace SearchConsole.Core
         /// <summary>
         /// Creates a new SearchConsole
         /// </summary>
-        /// <param name="clientId">Client Id. Get from https://console.developers.google.com/apis/credentials </param>  
+        /// <param name="clientId">Client Id. Get it from https://console.developers.google.com/apis/credentials </param>  
         /// <param name="clientSecret">Client Secret. Get from https://console.developers.google.com/apis/credentials </param>  
         /// <param name="userName">User name for credential</param>
         /// <param name="dataStoreName">Name for credential`s File Data Store</param>  
@@ -82,7 +82,7 @@ namespace SearchConsole.Core
         /// <summary>
         /// Creates a new SearchConsole
         /// </summary>
-        /// <param name="jsonPath">Path to client_id.json file. Get from https://console.developers.google.com/apis/credentials </param>  
+        /// <param name="jsonPath">Path to client_id.json file. Get it from https://console.developers.google.com/apis/credentials </param>  
         /// <param name="userName">User name for credential</param>
         /// <param name="dataStoreName">Name for credential`s File Data Store</param>  
         /// <param name="appName">Name for WebmastersService`s File Data Store</param>  
@@ -127,6 +127,12 @@ namespace SearchConsole.Core
             return RequestFor(new List<string>() { "query", "page", "country", "device" }, date, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce for current url
+        /// </summary>
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForSearchs(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);

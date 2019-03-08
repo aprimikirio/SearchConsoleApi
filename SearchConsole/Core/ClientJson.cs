@@ -8,7 +8,6 @@ namespace SearchConsole.Core
     class ClientJson
     {
         public string JsonPath { get; private set; }
-
         public string ClientId { get; private set; }
         public string ProjectId { get; private set; }
         public string AuthUri { get; private set; }
