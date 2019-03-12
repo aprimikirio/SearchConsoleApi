@@ -98,6 +98,9 @@ namespace SearchConsole.Core
             InitGoogleServices().Wait();
         }
 
+        /// <summary>
+        /// Creates new UserCredential and WebmastersService
+        /// </summary>
         private async Task InitGoogleServices()
         {
             string[] scopes = new string[] { WebmastersService.Scope.WebmastersReadonly };
@@ -115,7 +118,6 @@ namespace SearchConsole.Core
             });
         }
 
-
         public List<QuerryResponce> RequestForSPC(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);
@@ -128,7 +130,7 @@ namespace SearchConsole.Core
         }
 
         /// <summary>
-        /// Return list of QuerryResponce for current url
+        /// Return list of QuerryResponce with information about queries for current url for nearest available day
         /// </summary>
         /// <param name="rowStart">Set index of first item. Default is zero</param>  
         /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
@@ -139,44 +141,98 @@ namespace SearchConsole.Core
             return RequestForSearchs(QueryDate, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with information about queries for current url for specific day
+        /// </summary>
+        /// <param name="date">Set specific date</param>  
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForSearchs(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             return RequestFor(new List<string>() { "query" }, date, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with information about pages for current url for nearest available day
+        /// </summary>
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForPages(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);
             return RequestForPages(QueryDate, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with information about pages for current url for specific day
+        /// </summary>
+        /// <param name="date">Set specific date</param>  
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForPages(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             return RequestFor(new List<string>() { "page" }, date, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with information about countries for current url for nearest available day
+        /// </summary>
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForСountries(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);
             return RequestForСountries(QueryDate, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with information about countries for current url for specific day
+        /// </summary>
+        /// <param name="date">Set specific date</param>  
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForСountries(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             return RequestFor(new List<string>() { "country" }, date, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with information about devices for current url for nearest available day
+        /// </summary>
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForDevices(int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = DateTime.Now.AddDays(DaysDelay);
             return RequestForDevices(QueryDate, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with information about devices for current url for specific day
+        /// </summary>
+        /// <param name="date">Set specific date</param>  
+        /// <param name="rowStart">Set index of first item. Default is zero</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         public List<QuerryResponce> RequestForDevices(DateTime date, int rowStart = 0, int rowLimit = RowLimitConst, string country = null)
         {
             return RequestFor(new List<string>() { "device" }, date, rowStart, rowLimit, country);
         }
 
+        /// <summary>
+        /// Return list of QuerryResponce with all information, that available
+        /// </summary>
+        /// <param name="dimensions">Set dimensions. Must be a combination of page, query, country, device, and date</param>
+        /// <param name="date">Set specific date</param>   
+        /// <param name="rowStart">Set index of first item</param>  
+        /// <param name="rowLimit">Set number of items. Must be no more than 1000</param>
+        /// <param name="country">Set specific country from which the request was made</param>
         private List<QuerryResponce> RequestFor(List<string> dimensions, DateTime date, int rowStart, int rowLimit = RowLimitConst, string country = null)
         {
             QueryDate = date;
@@ -193,7 +249,7 @@ namespace SearchConsole.Core
                     StartDate = queryDate,
                     EndDate = queryDate,
                     RowLimit = queryRowLimit,
-                    Dimensions = dimensions, //"page" "query" "country" "device" "date"
+                    Dimensions = dimensions,
 
                     DimensionFilterGroups = new List<ApiDimensionFilterGroup>()
                 {
