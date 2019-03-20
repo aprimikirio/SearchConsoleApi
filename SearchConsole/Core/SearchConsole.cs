@@ -80,7 +80,7 @@ namespace SearchConsole.Core
         }
 
         /// <summary>
-        /// Creates a new SearchConsole
+        /// Returns new SearchConsole
         /// </summary>
         /// <param name="jsonPath">Path to client_id.json file. Get it from https://console.developers.google.com/apis/credentials </param>  
         /// <param name="userName">User name for credential</param>
@@ -315,6 +315,9 @@ namespace SearchConsole.Core
         }
     }
 
+    /// <summary>
+    /// Special class for querry responces. Stores information about querry`s text, URL, country, device, clicks, impressions, CTR, position, date.
+    /// </summary>
     public class QuerryResponce
     {
         public string Text { private set; get; }
@@ -327,6 +330,18 @@ namespace SearchConsole.Core
         public double Position { private set; get; }
         public DateTime Date { private set; get; }
 
+        /// <summary>
+        /// Returns new QuerryResponce
+        /// </summary>
+        /// <param name="text">Set text of querry</param>
+        /// <param name="url">Set url of querry</param>
+        /// <param name="country">Set country of querry. XXX format</param>
+        /// <param name="device">Set device of querry</param>
+        /// <param name="clicks">Set number of clicks of querry</param>
+        /// <param name="impressions">Set number of impressions of querry</param>
+        /// <param name="ctr">Set CTR of querry</param>
+        /// <param name="position">Set position of page of querry</param>
+        /// <param name="date">Set date of querry</param>
         public QuerryResponce(string text, string url, string country, string device, int clicks, int impressions, double ctr, double position, DateTime date)
         {
             Text = text;
